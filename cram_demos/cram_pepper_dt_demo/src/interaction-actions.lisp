@@ -55,11 +55,11 @@
 (defun ask (&key ((:intention ?intention)) ((:to-agent ?agent)) ((:topic ?topic))  &allow-other-keys)
  (let ((?type ?intention) (?to-agent ?agent) (?about ?topic))
   (let ((?message (ask-sentence ?type :?topic ?about)))
-   (dt::construct-me-interaction-designator ?message ?type ?about ?to-agent)
+   (agin::construct-me-interaction-designator ?message ?type ?about ?to-agent)
    (pm-execute 'pepper-communication (desig:a motion (type speaking) (:sentence ?message))))))
 
 (defun tell (&key ((:intention ?intention)) ((:to-agent ?agent)) ((:topic ?topic)) ((:details ?info)) &allow-other-keys)
  (let ((?type ?intention) (?to-agent ?agent) (?about ?topic) (?word ?info))
   (let ((?message (tell-sentence ?type ?about ?word )))
-   (dt::construct-me-interaction-designator ?message ?type ?about ?to-agent)
+   (agin::construct-me-interaction-designator ?message ?type ?about ?to-agent)
    (pm-execute 'pepper-communication (desig:a motion (type speaking) (:sentence ?message))))))

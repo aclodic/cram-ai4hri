@@ -20,14 +20,14 @@
 
                  (let ((obj (desig:desig-prop-value target :name)))
                     (print obj)
-                    (look-object obj)))
+                    (pepper-ll::look-object obj)))
              
                 ((princ "no object to look at"))))))      
              
      (move-to
             (let ((x  (pepper-moving-motion-x-val  motion))
                   (y  (pepper-moving-motion-y-val  motion)))
-              (call-move-to-srv x y))))))  
+              (pepper-ll::call-move-to-srv x y))))))  
 
 
  ;;manipulation
@@ -50,7 +50,7 @@
 
                  (let ((obj (desig:desig-prop-value target :name)))
                     (print obj)
-                    (point-at-object obj)))
+                    (pepper-ll::point-at-object obj)))
              
                 ((princ "no object to look at")))))))))
 
@@ -66,7 +66,7 @@
             
            (let ((sentence  (pepper-communication-motion-sentence motion)))
             (print sentence)
-            (call-say-srv sentence))))))                  
+            (pepper-ll::call-say-srv sentence))))))                  
 
 
 (def-process-module listening (interaction-designator)
@@ -81,15 +81,15 @@
      (let ((input (understand-interaction-input interaction))
            (context (understand-interaction-context interaction)))
       (write-line "I am trying to understand your sentence")
-      (cond ((eql context nil) (dt::understand-call input)) 
-       ((dt::merge-query-call (nth 0 (dt::understand-call input)) context nil)))))
+      (cond ((eql context nil) (agin::understand-call input)) 
+       ((agin::merge-query-call (nth 0 (agin::understand-call input)) context nil)))))
       
       
     
     (receive-input      
      (let ((agent-name (receive-interaction-from-agent interaction))
            (content (receive-interaction-with-content interaction)))
-      (dt::construct-you-interaction-designator agent-name content))))))
+      (agin::construct-you-interaction-designator agent-name content))))))
       
       
        
@@ -105,9 +105,9 @@
 
     (reply
 
-      (dt::reply-to-msg))
+      (agin::reply-to-msg))
       
-    (tell (dt::construct-me-interaction-designator (say-hello) "greeting" "human_0" "estop")))))
+    (tell (agin::construct-me-interaction-designator (say-hello) "greeting" "human_0" "estop")))))
        
       
       
@@ -126,15 +126,15 @@
 ;      (let ((input (understand-interaction-input interaction))
 ;            (context (understand-interaction-context interaction)))
 ;       (write-line "I am trying to understand your sentence")
-;       (cond ((eql context nil) (dt::understand-call input)) 
-;       ((dt::merge-query-call (nth 0 (dt::understand-call input)) context nil))
+;       (cond ((eql context nil) (agin::understand-call input)) 
+;       ((agin::merge-query-call (nth 0 (agin::understand-call input)) context nil))
       
 ;       )))
     
 ;     (receive-input      
 ;      (let ((agent-name (receive-interaction-from-agent interaction))
 ;            (content (receive-interaction-with-content interaction)))
-;       (dt::construct-you-interaction-designator agent-name content)
+;       (agin::construct-you-interaction-designator agent-name content)
       
 ;       ))
 ;       ) 

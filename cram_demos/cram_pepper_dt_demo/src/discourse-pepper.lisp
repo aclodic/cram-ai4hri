@@ -158,5 +158,5 @@
       (nth (- n 1) *list-please-take*))))
 
 (defun take-cube-sentence ()
- (let ((cube (dt::get-current-cube-verbalization)))
+ (let ((cube (agin::get-current-cube-verbalization)))
   (say-take-cube cube)))
