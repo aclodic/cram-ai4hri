@@ -4,3 +4,6 @@ build
 latest_asdf_check
 .#*
 *~
+.vscode/settings.json
+.gitignore
+.vscode/c_cpp_properties.json
