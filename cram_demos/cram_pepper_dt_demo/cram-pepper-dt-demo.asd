@@ -49,8 +49,8 @@
                                                     "motion-designators"
                                                     "interaction-designators"
                                                     "process-modules"))
-              (:file "demo-test" :depends-on ("package" "discourse-pepper"
-                                                   "process-modules" "dt-pepper" "interaction-actions"))))))  
+              (:file "demo-dt" :depends-on ("package" "discourse-pepper"
+                                                   "process-modules" "interaction-actions"))))))  
              
   
 
