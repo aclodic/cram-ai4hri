@@ -31,7 +31,7 @@ what do you want?
 
 to run the demo:
 
-0. launch everything related for the demo (see [RIS Documentation](https://github.com/RIS-WITH/ris_with_documentation))
+0. launch everything related tp the demo (see [RIS Documentation](https://github.com/RIS-WITH/ris_with_documentation))
 1. start emcas from shell: roslisp_repl
 2. in emacs load the cram_package:  
 ```lisp
