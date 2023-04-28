@@ -1,68 +1,4 @@
 (in-package :pepper-dt-demo)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-
-
-
-
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defvar ?target nil)
-
-(defun init-pepper ()
-  ;;(start-ros-node "cram_pepper_demo")
-  ;;(init-ros-dt)
-  (init-list-discourse))
-  ;; (init-ros-pepper)
-  ;; (init-ros-dt-pepper))
-
-
-
-(defun return-sentence (?intention  &optional (?word nil))
-  (ecase ?intention
-   (:greet (setf ?sentence (say-hello)))
-   (:explain (setf ?sentence (say-explain ?word)))
-   (:ask-to-take (setf ?sentence (say-take-cube ?word)))
-   (:explain-wrong-cube (setf ?sentence (say-wrong-cube)))
-   (:end (setf ?sentence (say-goodbye)))
-   (:congrate (setf ?sentence (say-congrate)))
-   (:cancel (setf ?sentence (say-cancel)))
-   (:inform-scan (setf ?sentence (say-scan)))
-   (:inform-rescan (setf ?sentence (say-rescan)))
-   (:inform-discover (setf ?sentence (say-discover-cube ?word)))
-   (:continue-task (setf ?sentence (say-continue-task)))
-   (:impossible-take (setf ?sentence (say-impossible-take)))
-   (:ask-for-help (setf ?sentence (say-help ?word)))
-   (:question (setf ?sentence (say-question)))
-   (:not-understand (setf ?sentence (say-not-understand)))
-   (:designate-cube (setf ?sentence (say-designate-cube)))
-   (:inform-no-cube (setf ?sentence (say-no-cube-take)))
-   (:waiting (setf ?sentence (say-waiting)))
-   (:inform-good-cube (setf ?sentence (say-point-good-cube))))
-   
- (values ?sentence))
-
-
-(defun demo ()
- (setq ?target (desig:an object
-                (type object)
-                (name "cube_BBTG")))
- (let((?targettest ?target))
-   (princ ?targettest)
-   (top-level
-     (with-process-modules-running (pepper-navigation)
-       (let ((target (desig:a motion (type looking) (target ?targettest))))
-          (pm-execute 'pepper-navigation target))))))
-
-
-(defun demo-moveto ()
- (let((?x -0.25) (?y 0))
-   (top-level
-     (with-process-modules-running (pepper-navigation)
-       (let ((target (desig:a motion (type moving) (x-val ?x) (y-val ?y))))
-          (pm-execute 'pepper-navigation target))))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -91,22 +27,6 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun init-dt ()
- (start-ros-node "cram_pepper_demo_ros_node")
- (pepper-ll::init-tf)
- (init-pepper)
- ;;(init-dt-pepper)
- ;;(init-list-discourse)
- ;;(agin::add-human
- (agin::init-dt "pepper" "eng")  
- (agin::construct-you-agent-desig "human_0"))
-  ;;(princ ">>>changing context")(terpri)
- ;;(change-context)
- ;;(i-restart))
- 
- 
-
-
 
 (defun i-scanning ()
  (pepper-ll::look-at)
@@ -132,62 +52,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-
-
-
-
-
-;;demo listening
-
-; (defun demo-greet ()
-;  (let ((?sentence (say-hello)) (?place (cl-transforms:make-3d-vector 0.25 0.0 0)))
-;   (top-level
-;     (with-process-modules-running (pepper-navigation pepper-communication)
-;       (exe:perform (desig:an action (type listening) (:understand ?interaction-desig)))))))
-
-
-;;;;;; demo point at
-
-; (defun speak (&key ((:speech ?sentence)) &allow-other-keys)
-; ;  (let ((?text-to-speak ?sentence))
-; ;       (print ?text-to-speak)
-;       (pm-execute 'pepper-communication (desig:a motion (type speaking) (:sentence ?sentence))))
-
-
-; (defun point (&key ((:at ?object-designator)) ((:arm ?selected-arm)) &allow-other-keys)
-;  (let ((object ?object-designator) (arm ?selected-arm))
-;       (exe:perform (desig:an action (type pointing) (:at object) (:arm arm)))))
-
-
-(defun test-mo ()
- (top-level
-      (with-process-modules-running (pepper-navigation)
-       (pm-execute 'pepper-navigation  (desig:a motion (type testing))))))
-
-(defun test-int ()
- (top-level
-      (with-process-modules-running (process-input)
-       (pm-execute 'process-input (desig:an interaction (type understanding) (:input "the cube") (:context nil))))))
-
-(defun test-int-c ()
- (let ((?ctx (agin::reset-context)))
-  (write-line (format nil "the context is:~a" ?ctx))
-  (top-level
-       (with-process-modules-running (process-input)
-        (pm-execute 'process-input (desig:an interaction (type understanding) (:input "the cube") (:context ?ctx)))))))
-
-
-(defun test-you-int ()
- (agin::reset-context)
- (write-line "what is your agent name?")
- (let ((?agent-name (read)))
-  (write-line "what do you want?")
-  (let ((?message (read)))
-   (top-level
-        (with-process-modules-running (listening)
-         (pm-execute 'listening (desig:an interaction (type receiving) (:from-agent ?agent-name) (:with-content ?message))))))))
-
-
 (defparameter *count* 0)
 (defparameter *mvt-duration* 3)
 (defparameter *agent-state* "in-progress")
@@ -198,24 +62,7 @@
                               (type object)
                               (name agin::*current-cube*)))
 (defparameter *human* "human_0")
-                  
-;;demo
-
-; (defun demo ()
-;  (setq ?target (desig:an object
-;                 (type object)
-;                 (name "cube_BBTG")))
-;  (let((?targettest ?target))
-;    (princ ?targettest)
-;    (top-level
-;      (with-process-modules-running (pepper-navigation)
-;        (let ((target (desig:a motion (type looking) (target ?targettest))))
-;           (pm-execute 'pepper-navigation target))))))
-
-;  (defun speak (&key ((:speech ?sentence)) &allow-other-keys)
-; ;  (let ((?text-to-speak ?sentence))
-; ;       (print ?text-to-speak)
-;       (pm-execute 'pepper-communication (desig:a motion (type speaking) (:sentence ?sentence))))         
+   
 
 ;;dt actions
 (defun look-at (&key ((:at ?object-desig)) &allow-other-keys)
@@ -245,8 +92,6 @@
  (occasions-events:on-event (make-instance 'dt-event-detecting-human :you-agent agin::*you-agent-desig*))
  (roslisp:loop-at-most-every 1 
   (occasions-events:on-event (make-instance 'dt-event-play-demo))))
-
-  
 
 
 (defun reset-goal ()
@@ -392,59 +237,3 @@
                                        (setf *agent-goal* :wait-for-human1)))))))))))
 
        ((reset-goal))))
-
-
-; (defmethod occasions-events:on-event ((occasions-events:event dt-event-detecting-human))
-;  (write-line "Current event: detecting-human and current goal: :wait-for-human1")
-;  (let ((?you-agent (you-agent occasions-events:event)))(princ ?you-agent)
-;   (exe:perform (desig:an action (type waiting) (:for ?you-agent))))
-;  (setf *agent-goal* :wait-for-human1))
-
-; (defmethod occasions-events:on-event ((occasions-events:event dt-event-instructing-human))
-;  (write-line "Current event: instructing-human and current goal: :look-at-cube1")
-;  (let ((?current-cube (current-cube occasions-events:event)))(princ ?current-cube)
-;   (exe:perform (desig:an action (type looking) (:at ?current-cube))))
-;  (setf *agent-goal* :look-at-cube1))
-
-; (defmethod occasions-events:on-event ((occasions-events:event dt-event-waiting-for-human))
-;  (write-line "Current event: waiting-for-human and current goal: :wait-for-human2")
-;  (interaction-tell :inform *human* :waiting)
-;  (setf *agent-goal* :wait-for-human2))
-
-
-; (defmethod occasions-events:on-event ((occasions-events:event waiting-for-human2))
-;  (write-line "I am waiting now for human2")
-;  (cond 
-;   ((eql *count* *mvt-duration*))
-;    ;(perform sayWaiting))
-   
-;   ((>= *count* (+ *mvt-duration* 2))
-;   ;; (perform lookObject)
-;    (occasions-events:on-event (make-instance 'looking-at-cube2)))))
-
-
-; (defmethod occasions-events:on-event ((occasions-events:event looking-at-cube2))
-;  (write-line "I am looking now at cube2")
-;  (cond ((>= *count* (+ *mvt-duration* 2))
-;         (progn 
-;          (setf *count* 0)
-; ;;(perform lookobject)))
-;          (occasions-events:on-event (make-instance 'wrong-cube-take :no-take t))))))
-
-
-; ; ;; event-handlers for cube takes
-
-; (defmethod occasions-events:on-event ((occasions-events:event wrong-cube-take))
-; ;;(perform lookAt)
-;  (cond 
-;   ((eql (no-take event) t))))
-;    ;(perfom sayNoCubeTake))
-   
-;    ;(perform sayWaiting))
-   
-;  ;; ((perform sayWrongCubeTake))
-;   ;; (perform lookObject)
-;   ;; (perform lookExperimentator)
-;   ;; (perform pointAt)
-; ;;   (perform sayhelp)
-;   ;; (occasions-events:on-event (make-instance 'looking-at-cube2)))))
