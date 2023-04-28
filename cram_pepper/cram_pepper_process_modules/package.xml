@@ -1,0 +1,25 @@
+<package format="2">
+  <name>cram_pepper_process_modules</name>
+  <version>0.7.0</version>
+  <description>
+     cram_pepper_process_modules
+  </description>
+  <author>Mona Abdel-Keream</author>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>cram_process_modules</depend>
+  <depend>cram_prolog</depend>
+  <depend>cram_designators</depend>
+  <depend>cram_pepper_low_level</depend>
+  <depend>cram_tf</depend>
+  <depend>cram_common_failures</depend>
+  <depend>cram_common_designators</depend>
+  <depend>cram_language</depend>
+  <!-- <depend>cram_knowrob_world_state</depend> -->
+  <depend>cram_robokudo</depend>
+  <depend>cram_giskard</depend>
+  <depend>cram_joint_states</depend>
+  <!-- <depend>cram_nav_pcontroller</depend> -->
+</package>

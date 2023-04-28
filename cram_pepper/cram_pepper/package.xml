@@ -1,0 +1,11 @@
+<package>
+  <name>cram_pepper</name>
+  <version>0.7.0</version>
+  <description>Metapackage for pepper-related code.</description>
+  <author>Mona Abdel-Keream</author>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- run_depend>cram_pepper_description</run_depend -->
+</package>
