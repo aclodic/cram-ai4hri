@@ -36,13 +36,8 @@
 (defparameter buffer-list nil "Buffer List")
 (defparameter value-list nil "Value List")
 
-(defvar *prio-pub* (advertise 
-   "/pepper_head_manager/set_priorities"
-    "resource_management_msgs/PrioritiesSetter" "prio ROS publisher"))
-
-(defvar *env-point-pub* (advertise 
-  "/pepper_head_manager/env_monitoring/pepper_head_manager_msgs1_PrioritizedPoint"
-   "pepper_head_manager_msgs/PrioritizedPoint"))
+(defvar *prio-pub* nil)
+(defvar *env-point-pub* nil)
 
 
 (defun send-prio-info (buffer-list value-list)

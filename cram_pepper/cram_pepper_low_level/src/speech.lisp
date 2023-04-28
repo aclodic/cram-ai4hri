@@ -33,9 +33,7 @@
 
 (defvar *say-no-move-srv* "/naoqi_driver/tts/say" "ROS service to animate while not moving")
 
-(defvar *speaking-point-pub* (advertise 
-    "/pepper_head_manager/speaking/pepper_head_manager_msgs1_PrioritizedPoint"
-        "pepper_head_manager_msgs/PrioritizedPoint"))
+(defvar *speaking-point-pub* nil)
   
 ;;say service
 (defun call-say-srv (text)
@@ -74,6 +72,3 @@
                                      :value 1)))
        (publish *speaking-point-pub* (roslisp:make-msg "pepper_head_manager_msgs/PrioritizedPoint" 
                                       :priority priority-message :data point-message))))
-    
-
-(roslisp-utilities:register-ros-init-function init-speaking-buffer)

@@ -31,16 +31,22 @@
 
 (defpackage cram-pepper-low-level
   (:nicknames #:pepper-ll)
-  (:use #:common-lisp #:cram-tf)
-  (:export
-   #:call-chest-color-srv
-   #:call-eye-color-srv
-   #:call-ear-progress-srv
-   #:call-move-to-srv
-   #:call-neutral-pose-srv
-   #:call-say-srv
-   #:call-say-no-move-srv
-   #:looking-at
-   #:look-at-object
-   #:point-at
-   #:point-at-object))
+  (:use :cpl
+        :roslisp
+        :cl-transforms
+        :cram-designators
+        :cram-process-modules
+        :cram-language-designator-support
+        :cram-tf))
+  ;; (:export
+  ;;  #:call-chest-color-srv
+  ;;  #:call-eye-color-srv
+  ;;  #:call-ear-progress-srv
+  ;;  #:call-move-to-srv
+  ;;  #:call-neutral-pose-srv
+  ;;  #:call-say-srv
+  ;;  #:call-say-no-move-srv
+  ;;  #:looking-at
+  ;;  #:look-at-object
+  ;;  #:point-at
+  ;;  #:point-at-object))

@@ -37,22 +37,31 @@
 (defparameter value-list nil "Value List")
 (defparameter *selected-arm* nil)
 
-(defvar *prio-pub-arm-right* (advertise 
+(defvar *prio-pub-arm-right*  nil "prio ROS publisher for right arm") 
+
+(defvar *prio-pub-arm-left*  nil  "prio ROS publisher for left arm")
+
+(defvar *point-at-right-pub*  nil)
+
+(defvar *point-at-left-pub*  nil)
+
+(defun init-prio-pub ()
+
+(setf *prio-pub-arm-right* (advertise 
    "/pepper_arm_manager_right/set_priorities"
-    "resource_management_msgs/PrioritiesSetter") "prio ROS publisher for right arm")
+    "resource_management_msgs/PrioritiesSetter"))
 
-(defvar *prio-pub-arm-left* (advertise 
-  "/pepper_arm_manager_left/set_priorities")
-   "resource_management_msgs/PrioritiesSetter" "prio ROS publisher for left arm")
+(setf *prio-pub-arm-left* (advertise 
+  "/pepper_arm_manager_left/set_priorities"
+   "resource_management_msgs/PrioritiesSetter"))
 
-
- (defvar *point-at-right-pub* (advertise 
+ (setf *point-at-right-pub* (advertise 
   "/pepper_arm_manager_right/social/pepper_arm_manager_msgs1_PrioritizedPoint"
     "pepper_head_manager_msgs/PrioritizedPoint"))
 
- (defvar *point-at-left-pub* (advertise 
+ (setf *point-at-left-pub* (advertise 
   "/pepper_arm_manager_left/social/pepper_arm_manager_msgs1_PrioritizedPoint"
-    "pepper_head_manager_msgs/PrioritizedPoint"))
+    "pepper_head_manager_msgs/PrioritizedPoint")))
 
 
 
