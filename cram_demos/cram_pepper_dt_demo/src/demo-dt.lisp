@@ -109,7 +109,7 @@
 
 
 (defun i-scanning ()
- (look-at)
+ (pepper-ll::look-at)
  (check-onto))
 
 
@@ -230,7 +230,7 @@
 (defun point (&key ((:at ?object-desig)) &allow-other-keys)
  (write-line "Performing Action : Pointing")
  (let ((?object ?object-desig))
-  (pm-execute 'pepper-manipulation  (desig:a motion (typerequest pointing) (:target ?object)))))
+  (pm-execute 'pepper-manipulation  (desig:a motion (type pointing) (:target ?object)))))
 
 (defun start-dt-demo ()
  (agin::update-cube-list)
