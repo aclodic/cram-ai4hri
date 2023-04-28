@@ -70,6 +70,9 @@
            #:resolve-object-desig
            #:action-designator #:action-grounding #:action
            #:motion-designator #:motion-grounding
+           #:interaction-designator #:interaction-grounding
+           #:agent-designator
+           #:message-designator
            #:location-designator
            #:*location-generator-max-retries*
            #:*print-location-validation-function-results*
@@ -105,6 +108,9 @@
            #:obj-desig?
            #:action-desig?
            #:motion-desig?
+           #:interaction-desig?
+           #:agent-desig?
+           #:message-desig?
            #:desig-prop #:desig-class
            #:desig-timestamp #:desig-description
            #:effective-designator #:desig-value
