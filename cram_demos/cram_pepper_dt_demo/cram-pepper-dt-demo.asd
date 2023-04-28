@@ -29,8 +29,8 @@
                :cram-ontologenius
                :cram-agent-interaction
                :cram-occasions-events
-               :cram-pepper-low-level
-               ) 
+               :cram-pepper-low-level)
+                
              
 
   :components
@@ -47,11 +47,13 @@
                                                     "motion-designators"
                                                     "interaction-designators"))   
               (:file "interaction-actions" :depends-on ("package"
-                                                    "motion-designators"
-                                                    "interaction-designators"
-                                                    "process-modules"))
+                                                        "motion-designators"
+                                                        "interaction-designators"
+                                                        "process-modules"))
               (:file "demo-dt" :depends-on ("package" "discourse-pepper"
-                                                   "process-modules" "interaction-actions"))))))  
+                                                   "process-modules" "interaction-actions"))
+              (:file "init" :depends-on ("package" "discourse-pepper"
+                                         "process-modules" "interaction-actions"))))))  
              
   
 
