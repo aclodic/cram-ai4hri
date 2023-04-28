@@ -3,6 +3,7 @@
 
 (defun init-demo ()
 (init-ros-pepper)
+(pepper-ll::init-pepper-ros-control) 
 (init-onto-communication)
 )
 

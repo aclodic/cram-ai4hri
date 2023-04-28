@@ -2,9 +2,6 @@
 
 (defun init-pepper-ros-control ()
 
-
-(init-speaking-buffer)
-
 (setf *prio-pub-arm-right* (advertise 
    "/pepper_arm_manager_right/set_priorities"
     "resource_management_msgs/PrioritiesSetter"))
@@ -32,4 +29,8 @@
 (setf *speaking-point-pub* (advertise 
     "/pepper_head_manager/speaking/pepper_head_manager_msgs1_PrioritizedPoint"
         "pepper_head_manager_msgs/PrioritizedPoint"))
+        
+(init-speaking-buffer)
+
+
  )

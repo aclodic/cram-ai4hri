@@ -20,7 +20,7 @@
 
                  (let ((obj (desig:desig-prop-value target :name)))
                     (print obj)
-                    (pepper-ll::look-object obj)))
+                    (pepper-ll::look-at-object obj)))
              
                 ((princ "no object to look at"))))))      
              
