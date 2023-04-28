@@ -27,8 +27,9 @@
                :ontologenius-msg
                :pepper_head_manager_msgs-msg
                :cram-ontologenius
-               :cram-directory-task
+               :cram-agent-interaction
                :cram-occasions-events
+               :cram-pepper-low-level
                ) 
              
 
