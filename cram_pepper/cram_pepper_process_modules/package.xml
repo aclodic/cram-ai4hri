@@ -5,6 +5,7 @@
      cram_pepper_process_modules
   </description>
   <author>Mona Abdel-Keream</author>
+  <maintainer email="abdelker@cs.uni-bremen.de">Mona Abdel-Keream</maintainer>
   <license>BSD</license>
 
   <buildtool_depend>catkin</buildtool_depend>
