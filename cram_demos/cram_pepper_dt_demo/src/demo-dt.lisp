@@ -91,15 +91,15 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun demo-dt ()
+(defun init-dt ()
  (start-ros-node "cram_pepper_demo_ros_node")
  (pepper-ll::init-tf)
  (init-pepper)
  ;;(init-dt-pepper)
  ;;(init-list-discourse)
- ;;(dt::add-human
- (dt::init-dt "pepper" "eng")  
- (dt::construct-you-agent-desig "human_0"))
+ ;;(agin::add-human
+ (agin::init-dt "pepper" "eng")  
+ (agin::construct-you-agent-desig "human_0"))
   ;;(princ ">>>changing context")(terpri)
  ;;(change-context)
  ;;(i-restart))
@@ -115,16 +115,16 @@
 
 (defun i-restart ()
  (i-scanning)
- (dt::update-cube-list)
+ (agin::update-cube-list)
  (princ "---> RESTART")(terpri)
- (princ dt::*cubes*)(terpri))
+ (princ agin::*cubes*)(terpri))
 
 (defun i-perform-dt-step ()
 
- (let ((response-disambiguate-srv (dt::disambiguate-cube dt::*current-cube*)))
+ (let ((response-disambiguate-srv (agin::disambiguate-cube agin::*current-cube*)))
       (setq *sparql-result* (msg-slot-value response-disambiguate-srv :SPARQLRESULT))
       (setq *ambiguous* (msg-slot-value response-disambiguate-srv :AMBIGUOUS)))
- (let ((response-verbalize-srv (dt::call-verbalize-srv *sparql-result*)))
+ (let ((response-verbalize-srv (agin::call-verbalize-srv *sparql-result*)))
       (setq *verbalization* (msg-slot-value response-verbalize-srv :VERBALIZATION)))
                                 
  (say (say-take-cube *verbalization*)))
@@ -170,7 +170,7 @@
        (pm-execute 'process-input (desig:an interaction (type understanding) (:input "the cube") (:context nil))))))
 
 (defun test-int-c ()
- (let ((?ctx (dt::reset-context)))
+ (let ((?ctx (agin::reset-context)))
   (write-line (format nil "the context is:~a" ?ctx))
   (top-level
        (with-process-modules-running (process-input)
@@ -178,7 +178,7 @@
 
 
 (defun test-you-int ()
- (dt::reset-context)
+ (agin::reset-context)
  (write-line "what is your agent name?")
  (let ((?agent-name (read)))
   (write-line "what do you want?")
@@ -196,7 +196,7 @@
 (defparameter *agent-goal* nil)
 (defparameter *current-cube* (desig:an object
                               (type object)
-                              (name dt::*current-cube*)))
+                              (name agin::*current-cube*)))
 (defparameter *human* "human_0")
                   
 ;;demo
@@ -232,17 +232,17 @@
  (let ((?object ?object-desig))
   (pm-execute 'pepper-manipulation  (desig:a motion (typerequest pointing) (:target ?object)))))
 
-(defun init-dt-demo ()
- (dt::update-cube-list)
- (dt::select-current-cube)
- (dt::construct-you-agent-desig "human_0")
+(defun start-dt-demo ()
+ (agin::update-cube-list)
+ (agin::select-current-cube)
+ (agin::construct-you-agent-desig "human_0")
  (setf *agent-intention* :greet)
  (top-level
       (with-process-modules-running (pepper-navigation pepper-manipulation pepper-communication)
        (exe:perform (desig:an action (type performing) (:task "dt"))))))
 
 (defun perform-dt-task (&key ((:task ?dt)) &allow-other-keys)
- (occasions-events:on-event (make-instance 'dt-event-detecting-human :you-agent dt::*you-agent-desig*))
+ (occasions-events:on-event (make-instance 'dt-event-detecting-human :you-agent agin::*you-agent-desig*))
  (roslisp:loop-at-most-every 1 
   (occasions-events:on-event (make-instance 'dt-event-play-demo))))
 
@@ -252,7 +252,7 @@
 (defun reset-goal ()
 
 ;;set goal/event to WaitingHuman1
- (occasions-events:on-event (make-instance 'dt-event-detecting-human :you-agent dt::*you-agent-desig*)))
+ (occasions-events:on-event (make-instance 'dt-event-detecting-human :you-agent agin::*you-agent-desig*)))
 
 ;;event classes for goals
 
@@ -325,7 +325,7 @@
   (:greet (occasions-events:on-event (make-instance 'dt-event-greet-agent)))
   (:inform (occasions-events:on-event (make-instance 'dt-event-instruct-agent)))
   (:request  (occasions-events:on-event (make-instance 'dt-event-request-agent)))
-  (:monitor (occasions-events:on-event (make-instance 'dt-event-monitor :you-agent dt::*you-agent-desig*)))
+  (:monitor (occasions-events:on-event (make-instance 'dt-event-monitor :you-agent agin::*you-agent-desig*)))
   (:end (occasions-events:on-event (make-instance 'dt-event-end-demo)))))
  
 
@@ -376,7 +376,7 @@
                                     (write-line "Current goal: check-cube-take")
                                     (setf *count* 0)
                                     (cond 
-                                     ((eql (dt::b-cube-taken dt::*current-cube*) nil)
+                                     ((eql (agin::b-cube-taken agin::*current-cube*) nil)
 
                                       (interaction-tell :congrate *human*)
                                       (setf *agent-intention* :end))
