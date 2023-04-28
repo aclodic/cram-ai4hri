@@ -1,5 +1,5 @@
 (defpackage :cram-agent-interaction
-  (:nicknames :dt)
+  (:nicknames :agin)
   (:use :cpl
         :roslisp
         :cl-transforms

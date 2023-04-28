@@ -1,4 +1,4 @@
-(in-package :dt)
+(in-package :agin)
 
 (defvar *disambiguate-srv* nil "ROS service to disambgiuate")
 (defvar *verbalize-srv* nil "ROS service to verbalize")

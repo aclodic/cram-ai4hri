@@ -1,4 +1,4 @@
-(in-package :dt)
+(in-package :agin)
 
 (defparameter *you-interact-desig* nil)
 (defparameter *me-interact-desig* nil)
