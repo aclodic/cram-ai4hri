@@ -14,9 +14,9 @@
 (defun init-pepper ()
   ;;(start-ros-node "cram_pepper_demo")
   ;;(init-ros-dt)
-  (init-list-discourse)
-  (init-ros-pepper)
-  (init-ros-dt-pepper))
+  (init-list-discourse))
+  ;; (init-ros-pepper)
+  ;; (init-ros-dt-pepper))
 
 
 
@@ -93,7 +93,7 @@
 
 (defun demo-dt ()
  (start-ros-node "cram_pepper_demo_ros_node")
- (init-tf)
+ (pepper-ll::init-tf)
  (init-pepper)
  ;;(init-dt-pepper)
  ;;(init-list-discourse)
