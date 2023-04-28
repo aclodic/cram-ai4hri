@@ -30,26 +30,35 @@
   :author "Mona Abdel-Keream"
   :license "BSD"
 
-  :depends-on (roslisp
-               roslisp-utilities
-               cl-transforms
-               cl-transforms-stamped
-               cl-tf
-               actionlib
-               alexandria
-               yason
-               cram-language
-               cram-tf
-               cram-utilities
-               cram-prolog
-               cram-robot-interfaces
-               ;;cram-pepper-description ; for tool frames
-               nao_interaction_msgs-srv
-               exp_pepper-msg
-               pepper_head_manager_msgs-msg
-               cram-common-failures
-               cram-simple-actionlib-client
-               geometry_msgs-msg)
+  :depends-on (:roslisp
+               :actionlib_msgs-msg
+               :actionlib
+               :geometry_msgs-msg
+               :cl-transforms
+               :cl-transforms-stamped
+               :cl-tf
+               :cl-tf2
+               :cram-tf
+               :cram-language
+               :cram-designators 
+               :cram-prolog
+               :cram-process-modules 
+               :cram-language-designator-support
+               :cram-executive 
+               :cram-cloud-logger
+               :nao_interaction_msgs-srv
+               :exp_pepper-msg
+           ;;:cram-common-failure
+               :resource_management_msgs-msg
+               :knowledge_sharing_planner_msgs-msg
+               :knowledge_sharing_planner_msgs-srv
+               :mementar-msg
+               :ontologenius-srv
+               :ontologenius-msg
+               :pepper_head_manager_msgs-msg
+               :cram-ontologenius
+               :cram-directory-task
+               :cram-occasions-events)
   :components
   ((:module "src"
     :components
@@ -59,4 +68,5 @@
      (:file "head" :depends-on ("package"))
      (:file "interaction-services" :depends-on ("package"))
      (:file "scan-action" :depends-on ("package"))
-     (:file "speech" :depends-on ("package"))))))
+     (:file "speech" :depends-on ("package"))
+     (:file "init" :depends-on ("package"))))))
