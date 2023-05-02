@@ -1,5 +1,18 @@
 (in-package :pepper-dt-demo)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;demo receive input
+
+(defun receive-message ()
+ (agin::reset-context)
+ (write-line "what is your agent name?")
+ (let ((?agent-name (read)))
+  (write-line "what do you want?")
+  (let ((?message (read)))
+   (top-level
+        (with-process-modules-running (listening)
+         (pm-execute 'listening (desig:an interaction (type receiving) (:from-agent ?agent-name) (:with-content ?message))))))))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -198,7 +211,7 @@
 
                                         (let ((?current-cube *current-cube*))
                                         ;;(current-cube occasions-events:event)))
-                                        (princ ?current-cube)
+                                         (princ ?current-cube)
                                          (exe:perform (desig:an action (type looking) (:at ?current-cube))))
                                         (setf *agent-goal* :wait-for-human2)))))
                                 
