@@ -2,15 +2,15 @@
 
 
 (defun init-demo ()
-(init-ros-pepper)
-(pepper-ll::init-pepper-ros-control) 
-(init-onto-communication)
-)
+ (init-ros-pepper)
+ (pepper-ll::init-pepper-ros-control) 
+ (init-onto-communication))
+
 
 (defun init-ros-pepper()
  (start-ros-node "cram_pepper_dt_demo_ros_node")
- ;;(pepper-ll::init-tf)
-  (init-list-discourse))
+ (pepper-ll::init-tf)
+ (init-list-discourse))
 
 (defun init-onto-communication ()
  (agin::init-dt "pepper" "eng")  
