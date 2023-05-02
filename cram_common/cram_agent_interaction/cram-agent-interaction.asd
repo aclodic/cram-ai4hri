@@ -36,7 +36,6 @@
               (:file "package")
               (:file "ros-interface" :depends-on ("package"))
               (:file "dt-init" :depends-on ("package" "ros-interface"))
-              (:file "dt-events" :depends-on ("package"))
               (:file "dt-cubes" :depends-on ("package" "dt-init"))
               (:file "understand" :depends-on ("package" "dt-cubes"))
               (:file "agent-knowledge" :depends-on ("package"))
