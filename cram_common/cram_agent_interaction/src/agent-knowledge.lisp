@@ -3,8 +3,8 @@
 (defparameter *you-agent-desig* nil)
 
 (defun construct-you-agent-desig (agent-name)
- (let ((agent-role "Test"
- ;;(svref (onto::get-on agent-name "hasRole" agent-name) 0)
+ (let ((agent-role 
+ (svref (onto::get-on agent-name "hasRole" agent-name) 0)
  ))
   (let ((?agent-name agent-name) (?agent-role agent-role))
    (setf *you-agent-desig*
