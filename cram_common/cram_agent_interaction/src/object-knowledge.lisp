@@ -4,10 +4,6 @@
 
 (defvar property-list nil)
 
-(defparameter *table* "table_lack")                              
-(defparameter *ctx-designate* (vector (format nil "?0 isAbove ~a" *table*)
-                               "?0 isInContainer ?1" "?1 isA VisibleDtBox"))
-(defparameter *partial* nil)
 
 (defun designate-object (query)
  (let ((merge-sparql (merge-query-call query *ctx-designate* nil))) 
@@ -105,9 +101,11 @@
 
 ;;;;;
 (defun reset-context ()
+(setf *table* "table_1")
 (setf *ctx-designate* (vector (format nil "?0 isAbove ~a" *table*)
                                "?0 isInContainer ?1" "?1 isA VisibleDtBox"))
 )
+
 (defun set-new-context (new-context)
 (setf *partial* t)
 (setf *ctx-designate* nil)
@@ -115,7 +113,7 @@
 
 
 ; (defun get-context()
-;  (setf *table* "table_lack")
+;  (setf *table* "table_1")
 ;  (setq *ctx-designate* (vector (format nil "?0 isAbove ~a" *table*)
 ;                              "?0 isInContainer ?1" "?1 isA VisibleDtBox")))
 
