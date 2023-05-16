@@ -22,7 +22,7 @@
                :resource_management_msgs-msg
                :knowledge_sharing_planner_msgs-msg
                :knowledge_sharing_planner_msgs-srv
-               :mementar-msg
+              ;; :mementar-msg
                :pepper_head_manager_msgs-msg
                :cram-ontologenius
                :cram-occasions-events)
