@@ -57,7 +57,7 @@
                :ontologenius-msg
                :pepper_head_manager_msgs-msg
                :cram-ontologenius
-               :cram-directory-task
+               ;:cram-directory-task
                :cram-occasions-events)
   :components
   ((:module "src"
