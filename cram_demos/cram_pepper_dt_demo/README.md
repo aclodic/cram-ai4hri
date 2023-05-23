@@ -36,6 +36,7 @@ to run the demo:
 2. in emacs load the cram_package:  
 ```lisp
 (ros-load:load-system "cram_pepper_dt_demo" :cram-pepper-dt-demo)
+(in-package :pepper-dt-demo)
 ```
     - the compiler will throw an error because of a missing package - you can accept the fact (the next error relates to this one and can be accepted too)
 3. initialize the demo: 
