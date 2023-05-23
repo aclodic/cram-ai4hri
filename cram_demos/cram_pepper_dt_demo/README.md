@@ -31,26 +31,30 @@ what do you want?
 
 to run the demo:
 
-0. launch everything related tp the demo (see [RIS Documentation](https://github.com/RIS-WITH/ris_with_documentation))
-1. launch: rosrun tf2_ros buffer_server
-1. start emacs from shell: roslisp_repl
-2. in emacs load the cram_package:  
+0. launch everything related tp the demo except (rosrun exp_pepper ui2.py) (see https://github.com/RIS-WITH/ui_dt_pepper) 
+
+2. launch: rosrun tf2_ros buffer_server
+
+3. start emacs from shell: roslisp_repl
+
+4. in emacs load the cram_package:  
 ```lisp
 (ros-load:load-system "cram_pepper_dt_demo" :cram-pepper-dt-demo)
-(in-package :pepper-dt-demo)
-```
     - the compiler will throw an error because of a missing package - you can accept the fact (the next error relates to this one and can be accepted too)
-3. 
+```
+
+5. 
 ```lisp
 (in-package :pepper-dt-demo)
 ```
-4.
+
+6.
 . initialize the demo: 
 ```lisp
 (init-demo)
 ```
 
-5. start the demo: 
+7. start the demo: 
 ```lisp
 (start-dt-demo)
 ```
